@@ -1,0 +1,20 @@
+.hamp {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+  }
+  .navbtn{
+    height: 40px;
+    width: 110px;
+    margin-left: 13px;
+    margin-top: 5px;
+    border-radius: 50px;
+    border: transparent;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .navbtn:hover{
+   background-color: lightgray;
+  }
+ 

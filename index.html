@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="front.css" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/af79a44cc9.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      #search_result {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      #nav {
+        height: 80px;
+        border: transparent;
+        display: flex;
+      }
+      #video {
+        height: 40px;
+        width: 600px;
+        margin-top: 10px;
+        margin-left: 150px;
+      }
+      button {
+        height: 45px;
+        margin-top: 10px;
+        width: 70px;
+      }
+      #innav {
+        width: 500px;
+        border-right: 1px solid grey;
+      }
+      #search_result {
+        border-top: 1px solid grey;
+        height: 600px;
+        overflow-x: scroll;
+      }
+      #search_result > div {
+        display: grid;
+        border: 1px solid lightgray;
+        height: 250px;
+        width: 280px;
+        margin-left: 15px;
+        margin-top: 15px;
+      }
+      #search_result > div > img {
+        border: transparent;
+        height: 150px;
+        width: 280px;
+      }
+      #search_result > div > p {
+        font-size: 15px;
+        font-weight: bold;
+      }
+      #innav > div > div {
+        height: 50px;
+      }
+      #innav > div > div:hover {
+        background-color: lightgray;
+      }
+      .ank{
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav">
+      <div style="margin-top: 20px; margin-left: 20px">
+        <div class="hamp"></div>
+        <div class="hamp"></div>
+        <div class="hamp"></div>
+      </div>
+      <div style="margin-top: 10px; margin-left: 20px; margin-right: 20px">
+        <img
+          src="https://www.gstatic.com/youtube/img/branding/youtubelogo/svg/youtubelogo.svg"
+          height="60px"
+          width="100px"
+        />
+      </div>
+      <input type="text" placeholder="Search" id="video" />
+      <button onclick="searchVideo1()" style="margin-left: 30px">Search</button>
+      <div
+        style="
+          border: transparent;
+          margin-top: 10px;
+          margin-left: 50px;
+          height: 50px;
+          width: 50px;
+          border: 1px solid grey;
+          border-radius: 50px;
+        "
+      >
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/25/25682.png"
+          height="40px"
+          style="margin-left: 4px; margin-top: 3px"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <div style="display: flex">
+      <div id="innav">
+        <div>
+          <div onclick="home()">
+            <i
+              class="fa-solid fa-house-chimney"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">Home</span>
+          </div>
+          <div onclick="explore()">
+            <i
+              class="fa-solid fa-compass"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">Explore</span>
+          </div>
+          <div onclick="shorts()">
+            <i
+              class="fa-solid fa-headset"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">Shorts</span>
+          </div>
+          <div onclick="subscribe()">
+            <i
+              class="fa-solid fa-subscript"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">Subscription</span>
+          </div>
+          <!--  -->
+        </div>
+        <hr />
+        <div>
+          <div>
+            <i
+              class="fa-solid fa-album-collection"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">Library</span>
+          </div>
+          <div>
+            <i
+              class="fa-solid fa-clock-rotate-left"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">History</span>
+          </div>
+          <div>
+            <i
+              class="fa-solid fa-play"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">Your Videos</span>
+          </div>
+          <div>
+            <i
+              class="fa-solid fa-train-track"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">Your Movies</span>
+          </div>
+          <div>
+            <i
+              class="fa-regular fa-clock"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">Watch Later</span>
+          </div>
+          <div>
+            <i
+              class="fa-regular fa-thumbs-up"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">Liked Videos</span>
+          </div>
+          <div>
+            <i
+              class="fa-solid fa-headset"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank" onclick="casetoo()">Mix-Casetoo</span>
+          </div>
+          <div>
+            <i
+              class="fa-solid fa-subscript"
+              style="font-size: 20px; margin-top: 10px; margin-left: 30px"
+            >
+            </i>
+            <span style="font-size: 20px"  class="ank">Mix-Coding</span>
+          </div>
+        </div>
+
+        <!-- <div>Home</div>
+            <div>Explore </div>
+            <div>subscription</div>
+            <div>library</div>
+            <div>history</div>
+            <div>watch later</div>
+            <div>liked videos</div> -->
+      </div>
+      <div>
+        <div
+          style="
+            border-top: 1px solid grey;
+            height: 50px;
+            width: 1200px;
+            overflow-y: hidden;
+          "
+        >
+          <button class="navbtn" onclick="all()">All</button>
+          <button class="navbtn" onclick="live()">Live</button>
+          <button class="navbtn" onclick="gaming()">Gaming</button>
+          <button class="navbtn" onclick="music()">Music</button>
+          <button class="navbtn" onclick="mrbean()">Mr.Bean</button>
+          <button class="navbtn" onclick="rajpal()">Rajpal Yadav</button>
+          <button class="navbtn" onclick="ashish()">Ashish</button>
+          <button class="navbtn" onclick="bollywood()">Bollywood</button>
+          <button class="navbtn" onclick="pubg()">PubG</button>
+          <button class="navbtn" onclick="python()">Python</button>
+        </div>
+        <div id="search_result"></div>
+      </div>
+      <!--  -->
+    </div>
+  </body>
+</html>
+<script>
+  // https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${video_query}&type=video&key=AIzaSyDG_xt9AGIcpfJOUEbnwnUYxCVM-rA0SAE&maxResults=20
+
+  let video_query;
+
+  function all() {
+    console.log("here");
+    video_query = "new videos";
+    searchVideo();
+  }
+  function live() {
+    console.log("here");
+    video_query = "live";
+    searchVideo();
+  }
+  function gaming() {
+    console.log("here");
+    video_query = "gaming";
+    searchVideo();
+  }
+  function music() {
+    console.log("here");
+    video_query = "songs";
+    searchVideo();
+  }
+  function mrbean() {
+    console.log("here");
+    video_query = "mr bean";
+    searchVideo();
+  }
+  function rajpal() {
+    console.log("here");
+    video_query = "rajpal yadav";
+    searchVideo();
+  }
+  function ashish() {
+    console.log("here");
+    video_query = "ashish chanchlani";
+    searchVideo();
+  }
+  function bollywood() {
+    console.log("here");
+    video_query = "bollywood";
+    searchVideo();
+  }
+  function pubg() {
+    console.log("here");
+    video_query = "bgmi";
+    searchVideo();
+  }
+  function python() {
+    console.log("here");
+    video_query = "python";
+    searchVideo();
+  }
+  function casetoo(){
+    video_query= "casetoo"
+    searchVideo()
+  }
+
+  function home() {
+    console.log("here");
+    video_query = "home";
+    searchVideo();
+  }
+  function explore() {
+    console.log("here");
+    video_query = "explore";
+    searchVideo();
+  }
+  function shorts() {
+    console.log("here");
+    video_query = "shorts";
+    searchVideo();
+  }
+  function subscribe() {
+    console.log("here");
+    video_query = "subscribe";
+    searchVideo();
+  }
+  function searchVideo1() {
+    video_query = document.getElementById("video").value;
+    console.log(video_query);
+    searchVideo();
+  }
+
+  const result_div = document.getElementById("search_result");
+   const api ="AIzaSyDG_xt9AGIcpfJOUEbnwnUYxCVM-rA0SAE"
+  //  video_query = document.getElementById("video").value
+  async function searchVideo() {
+    // let video_query = document.getElementById("video").value
+
+    let response = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${video_query}&type=video&key=${api}&maxResults=40`
+    );
+    let data = await response.json();
+
+    let videos = data.items;
+
+    appendvideos(videos);
+  }
+
+  //   --------------------------------
+
+  // function appendvideos()can be written ss
+
+  const appendvideos = (items) => {
+    var rem = document.querySelector("#search_result");
+    rem.innerHTML = "";
+
+    items.forEach((el) => {
+      let {
+        snippet,
+        id: { videoId },
+      } = el;
+      let iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube.com/embed/${videoId}`;
+      iframe.height = "100px";
+      iframe.width = "200px";
+
+      let title = document.createElement("p");
+      title.textContent = snippet.title;
+
+      let time = document.createElement("p");
+      time.textContent = snippet.publishTime;
+
+      let thumbnail = document.createElement("img");
+      thumbnail.src = snippet.thumbnails.medium.url;
+
+      let data_to_send = {
+        snippet,
+        videoId,
+        video_query,
+      };
+
+      let div = document.createElement("div");
+
+      div.onclick = () => {
+        showvideo(data_to_send);
+      };
+      div.append(thumbnail, title);
+      result_div.append(div);
+    });
+  };
+
+  function showvideo(data) {
+    localStorage.setItem("clicked_video", JSON.stringify(data));
+
+    window.location.href = "video.html";
+  }
+
+  // ==============trending page
+
+  async function vdo() {
+    let response = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=trending&type=video&key=${api}&maxResults=40`
+    );
+    let data1 = await response.json();
+    let videos1 = data1.items;
+    appendvideos1(videos1);
+
+    console.log(videos1);
+  }
+  vdo();
+
+  const appendvideos1 = (items) => {
+    var rem = document.querySelector("#search_result");
+    rem.innerHTML = "";
+
+    items.forEach((el) => {
+      let {
+        snippet,
+        id: { videoId },
+      } = el;
+      let iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube.com/embed/${videoId}`;
+      iframe.height = "200px";
+      iframe.width = "360px";
+
+      let title = document.createElement("p");
+      title.textContent = snippet.title;
+
+      let thumbnail = document.createElement("img");
+      thumbnail.src = snippet.thumbnails.medium.url;
+
+      let data_to_send = {
+        snippet,
+        videoId,
+      };
+
+      let div = document.createElement("div");
+
+      div.onclick = () => {
+        showvideo(data_to_send);
+      };
+      div.append(thumbnail, title);
+      result_div.append(div);
+    });
+  };
+
+  function showvideo(data) {
+    localStorage.setItem("clicked_video", JSON.stringify(data));
+
+    window.location.href = "video.html";
+  }
+</script>

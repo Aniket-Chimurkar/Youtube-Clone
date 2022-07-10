@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="front.css" />
+    <style>
+      #navbar {
+        height: 100px;
+        border: 2px solid black;
+      }
+      #main {
+        display: flex;
+        height: 650px;
+
+        border: transparent;
+      }
+      #video_details {
+        height: 80%;
+        width: 100%;
+        border: 2 px solid blue;
+        margin-top: 10px;
+        margin-left: 30px;
+        margin-right: 40px;
+      }
+      #video_details1 {
+        height: 15%;
+        width: 100%;
+        border: transparent;
+        margin-left: 30px;
+        margin-top: 2px;
+      }
+      #nonrecommand {
+        flex: 1.5;
+
+        border: transparent;
+        margin-left: 60px;
+        margin-top: 10px;
+        height: 600px;
+
+        overflow: scroll;
+      }
+      #nonrecommand::-webkit-scrollbar {
+        display: none;
+      }
+
+      #search_result {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      #nav {
+        height: 80px;
+        border: transparent;
+        display: flex;
+      }
+      #video {
+        height: 40px;
+        width: 600px;
+        margin-top: 10px;
+        margin-left: 150px;
+      }
+      button {
+        height: 45px;
+        margin-top: 10px;
+        width: 70px;
+      }
+      #innav {
+        width: 500px;
+        border-right: 1px solid grey;
+      }
+      #search_result {
+        border-top: 1px solid grey;
+        height: 600px;
+        overflow-x: scroll;
+      }
+      #search_result > div {
+        display: grid;
+        border: 1px solid lightgray;
+        height: 250px;
+        width: 280px;
+        margin-left: 15px;
+        margin-top: 15px;
+      }
+      #search_result > div > img {
+        border: transparent;
+        height: 150px;
+        width: 280px;
+      }
+      #search_result > div > p {
+        font-size: 15px;
+        font-weight: bold;
+      }
+      #innav > div > div {
+        height: 50px;
+      }
+      #innav > div > div:hover {
+        background-color: lightgray;
+      }
+      #recommand > div {
+        border: 1px solid grey;
+        display: flex;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        text-align: center;
+      }
+      #recommand > div > p {
+        font-weight: bold;
+      }
+      #recommand > div > img {
+        border: transparent;
+        height: 100px;
+        width: 180px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 10px;
+      }
+      #acd::-webkit-scrollbar {
+        display: none;
+      }
+      .navbtn1 {
+        border: transparent;
+        width: 150px;
+        height: 35px;
+        margin-left: 12px;
+        margin-right: 12px;
+        border-radius: 50px;
+      }
+      .navbtn1:hover {
+        background-color: gray;
+      }
+      #video_details1 > span {
+        margin-left: 10px;
+        font-size: 15px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav">
+      <div style="margin-top: 20px; margin-left: 20px">
+        <div class="hamp"></div>
+        <div class="hamp"></div>
+        <div class="hamp"></div>
+      </div>
+      <div style="margin-top: 10px; margin-left: 20px; margin-right: 20px">
+        <img
+          src="https://www.gstatic.com/youtube/img/branding/youtubelogo/svg/youtubelogo.svg"
+          height="60px"
+          width="100px"
+        
+        onclick="takeme()"
+          />
+      </div>
+      <input type="text" placeholder="Search" id="video" />
+      <button onclick="searchVideo1()" style="margin-left: 30px">Search</button>
+      <div
+        style="
+          border: transparent;
+          margin-top: 10px;
+          margin-left: 50px;
+          height: 50px;
+          width: 50px;
+          border: 1px solid grey;
+          border-radius: 50px;
+        "
+      >
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/25/25682.png"
+          height="40px"
+          style="margin-left: 4px; margin-top: 3px"
+          alt=""
+        />
+      </div>
+    </div>
+    <hr />
+
+    <div id="main">
+      <div style="flex: 3.5">
+        <div id="video_details"></div>
+        <div id="video_details1"></div>
+      </div>
+
+      <div id="nonrecommand">
+        <hr />
+        <div
+          id="acd"
+          style="
+            border: transparent;
+            height: 45px;
+            width: 100%;
+            display: flex;
+            overflow: scroll;
+          "
+        >
+          <button class="navbtn1" onclick="all()">All</button>
+          <button class="navbtn1" onclick="live()">Live</button>
+          <button class="navbtn1" onclick="gaming()">Gaming</button>
+          <button class="navbtn1" onclick="music()">Music</button>
+          <button class="navbtn1" onclick="mrbean()">Mr.Bean</button>
+          <button class="navbtn1" onclick="rajpal()">Rajpal Yadav</button>
+          <button class="navbtn1" onclick="ashish()">Ashish</button>
+          <button class="navbtn1" onclick="bollywood()">Bollywood</button>
+          <button class="navbtn1" onclick="pubg()">PubG</button>
+          <button class="navbtn1" onclick="python()">Python</button>
+        </div>
+        <div id="recommand"></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  let { videoId } = JSON.parse(localStorage.getItem("clicked_video"));
+  let { snippet } = JSON.parse(localStorage.getItem("clicked_video"));
+
+  let nav_div = document.getElementById("video_details1");
+  let video_div = document.getElementById("video_details");
+
+  let iframe = document.createElement("iframe");
+  iframe.src = `https://www.youtube.com/embed/${videoId}`;
+  iframe.height = "100%";
+  iframe.width = "100%";
+
+  iframe.setAttribute("allowfullscreen", "true");
+
+  video_div.append(iframe);
+  let abdv = document.createElement("h2");
+  let abdv1 = document.createElement("span");
+  let abdv2 = document.createElement("span");
+
+  abdv.textContent = snippet.title;
+  abdv1.textContent = snippet.channelTitle;
+  abdv2.textContent = snippet.publishedAt;
+  nav_div.append(abdv, abdv1, abdv2);
+
+  // ...
+
+  const result_div = document.getElementById("recommand");
+
+   const api ="AIzaSyDG_xt9AGIcpfJOUEbnwnUYxCVM-rA0SAE"
+  let video_query;
+
+  function all() {
+    console.log("here");
+    video_query = "new videos";
+    searchVideo();
+  }
+  function live() {
+    console.log("here");
+    video_query = "live";
+    searchVideo();
+  }
+  function gaming() {
+    console.log("here");
+    video_query = "gaming";
+    searchVideo();
+  }
+  function music() {
+    console.log("here");
+    video_query = "songs";
+    searchVideo();
+  }
+  function mrbean() {
+    console.log("here");
+    video_query = "mr bean";
+    searchVideo();
+  }
+  function rajpal() {
+    console.log("here");
+    video_query = "rajpal yadav";
+    searchVideo();
+  }
+  function ashish() {
+    console.log("here");
+    video_query = "ashish chanchlani";
+    searchVideo();
+  }
+  function bollywood() {
+    console.log("here");
+    video_query = "bollywood";
+    searchVideo();
+  }
+  function pubg() {
+    console.log("here");
+    video_query = "bgmi";
+    searchVideo();
+  }
+  function python() {
+    console.log("here");
+    video_query = "python";
+    searchVideo();
+  }
+  function takeme(){
+    window.location.href="index.html"
+  }
+
+  async function searchVideo() {
+    // let video_query = document.getElementById("video").value
+
+    let response = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${video_query}&type=video&key=${api}&maxResults=40`
+    );
+    let data = await response.json();
+
+    let videos = data.items;
+
+    appendvideos(videos);
+  }
+
+  //   --------------------------------
+
+  // function appendvideos()can be written ss
+
+  const appendvideos = (items) => {
+    var rem = document.querySelector("#recommand");
+    rem.innerHTML = "";
+
+    items.forEach((el) => {
+      let {
+        snippet,
+        id: { videoId },
+      } = el;
+      let iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube.com/embed/${videoId}`;
+      iframe.height = "100px";
+      iframe.width = "200px";
+
+      let title = document.createElement("p");
+      title.textContent = snippet.title;
+
+      let time = document.createElement("p");
+      time.textContent = snippet.publishTime;
+
+      let thumbnail = document.createElement("img");
+      thumbnail.src = snippet.thumbnails.medium.url;
+
+      let data_to_send = {
+        snippet,
+        videoId,
+        video_query,
+      };
+
+      let div = document.createElement("div");
+
+      div.onclick = () => {
+        showvideo(data_to_send);
+      };
+      div.append(thumbnail, title);
+      result_div.append(div);
+    });
+  };
+
+  function showvideo(data) {
+    localStorage.setItem("clicked_video", JSON.stringify(data));
+
+    window.location.href = "video.html";
+  }
+
+  // ==============trending page
+
+  async function vdo() {
+    let response = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${snippet.title}&type=video&key=${api}&maxResults=40`
+    );
+    let data1 = await response.json();
+    let videos1 = data1.items;
+    appendvideos1(videos1);
+
+    console.log(videos1);
+  }
+  vdo();
+
+  const appendvideos1 = (items) => {
+    var rem = document.querySelector("#recommand");
+    rem.innerHTML = "";
+
+    items.forEach((el) => {
+      let {
+        snippet,
+        id: { videoId },
+      } = el;
+      let iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube.com/embed/${videoId}`;
+      iframe.height = "200px";
+      iframe.width = "360px";
+
+      let title = document.createElement("p");
+      title.textContent = snippet.title;
+
+      let thumbnail = document.createElement("img");
+      thumbnail.src = snippet.thumbnails.medium.url;
+
+      let data_to_send = {
+        snippet,
+        videoId,
+      };
+
+      let div = document.createElement("div");
+
+      div.onclick = () => {
+        showvideo(data_to_send);
+      };
+      div.append(thumbnail, title);
+      result_div.append(div);
+    });
+  };
+
+  function showvideo(data) {
+    localStorage.setItem("clicked_video", JSON.stringify(data));
+
+    window.location.href = "video.html";
+  }
+</script>
